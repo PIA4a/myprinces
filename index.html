@@ -1,0 +1,65 @@
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>Valentine Surprise</title>
+<link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<audio id="music" src="music/music.mp3" loop></audio>
+
+<div class="container">
+
+    <!-- SCREEN MAILBOX -->
+    <section id="screen-mailbox" class="active">
+        <div class="center">
+            <img src="image/mailbox.png" class="mailbox" onclick="pushMailbox()">
+        </div>
+    </section>
+
+    <!-- SCREEN FLOWER LETTER -->
+    <section id="screen-flower-letter">
+        <div class="center">
+            <img src="image/small-letter.png" class="small-letter" onclick="openLetter()">
+            <p class="hint">tap the letter</p>
+        </div>
+        <button class="back-btn" onclick="goToScreen('screen-mailbox')"></button>
+    </section>
+
+    <!-- SCREEN FULL LETTER -->
+    <section id="screen-full-card">
+    <div class="center">
+      <div class="love-overlay"></div>
+        <!-- Surat full tunggal -->
+        <img src="image/surat-full.png" class="full-letter" id="fullLetter">
+        <!-- Face trigger -->
+        <div class="face-trigger" onclick="goToScreen('screen-photobooth')">
+            <img src="image/wajah.png" class="face">
+        </div>
+    </div>
+
+    <!-- Tombol back -->
+    <button class="back-btn" onclick="goToScreen('screen-flower-letter')"></button>
+</section>
+
+    <!-- SCREEN PHOTOBOOTH -->
+<section id="screen-photobooth">
+
+    <!-- Bouquet di belakang -->
+    <img src="image/bouquet.png" class="bouquet">
+
+    <!-- Gambar photobooth full screen -->
+    <img src="image/photobooth-full.png" class="photobooth-full">
+
+    <!-- Overlay love -->
+    <div class="love-overlay"></div>
+
+    <!-- Tombol back -->
+    <button class="back-btn" onclick="goToScreen('screen-full-card')"></button>
+</section>
+
+<script src="script.js"></script>
+</body>
+</html>

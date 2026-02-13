@@ -1,0 +1,395 @@
+html, body{
+    margin:0;
+    padding:0;
+    width:100%;
+    height:100%;
+    overflow:hidden;
+    overflow-x:hidden;
+}
+
+body{
+    margin:0;
+    font-family:Arial, sans-serif;
+    overflow:hidden;
+    background:linear-gradient(180deg,black);
+}
+
+.container{
+    width:100%;
+    height:100vh;
+    position:relative;
+}
+
+section{
+    position:absolute;
+    width:100%;
+    height:100%;
+    display:none;
+}
+
+section.active{
+    display:block;
+}
+
+.center{
+    position:absolute;
+    top:50%;
+    left:50%;
+    transform:translate(-50%,-50%);
+    text-align:center;
+}
+
+/* MAILBOX */
+.mailbox{
+    width:200px !important;
+    cursor:pointer;
+}
+
+/* SMALL LETTER */
+.small-letter{
+    width:480px;
+    animation:pop 0.6s ease forwards;
+    cursor:pointer;
+    opacity:100;
+    transform:scale(0.5);
+}
+
+/* FULL LETTER */
+.full-letter{
+    width:155%;
+    border-radius:10px;
+    height:auto;
+    cursor:pointer;
+    animation:zoom 1s ease;
+}
+
+/* FACE */
+.face-trigger{
+    position:absolute;
+    bottom:-20px;
+    right:20px;
+}
+
+.face{
+    width:70px;
+    cursor:pointer;
+    animation:float 3s ease-in-out infinite;
+}
+
+.gallery{
+    position:relative;
+    width:100%;
+    height:70vh;
+}
+
+.bouquet{
+    position:absolute;
+    width:200px;
+    top:50%;
+    left:50%;
+    transform:translate(-50%,-50%);
+}
+
+.photo{
+    position:absolute;
+    width:100px;
+    border-radius:10px;
+    box-shadow:0 5px 15px rgba(0,0,0,0.3);
+}
+
+/* scattered photos */
+.p1{top:10%;left:10%;transform:rotate(-10deg);}
+.p2{top:20%;right:10%;transform:rotate(8deg);}
+.p3{bottom:15%;left:5%;transform:rotate(12deg);}
+.p4{bottom:10%;right:5%;transform:rotate(-8deg);}
+.p5{top:45%;left:2%;transform:rotate(-15deg);}
+.p6{top:50%;right:2%;transform:rotate(15deg);}
+
+/* BACK BUTTON */
+.back-btn{
+    position:absolute;
+    bottom:20px;
+    left:20px;
+    padding:3px 8px; 
+    border:2px solid white;
+    border-radius:15px;
+    background:none;
+    color:none;
+    font-size:10px;
+    cursor:pointer;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+}
+
+.back-btn::before{
+    content:"♡\2190";
+    color:white;
+}
+
+/* TEXT */
+.hint{
+    color:white;
+    margin-top:10px;
+    font-size:14px;
+}
+
+/* ANIMATIONS */
+@keyframes float{
+    0%,100%{transform:translateY(0);}
+    50%{transform:translateY(-15px);}
+}
+
+@keyframes pop{
+    0%{transform:scale(0);}
+    100%{transform:scale(1);}
+}
+
+@keyframes zoom{
+    0%{transform:scale(0.7);}
+    100%{transform:scale(1);}
+}
+
+/* BACKGROUND PER PAGE */
+#screen-mailbox{
+    background:url("image/bg1.jpg") no-repeat center center;
+    background-size:cover;
+}
+
+#screen-flower-letter{
+    background:url("image/bg2.jpg") no-repeat center center;
+    background-size:cover;
+}
+
+#screen-full-card{
+    background:url("image/bg3.jpg") no-repeat center center;
+    background-size:cover;
+}
+
+#screen-photobooth{
+    background:url("image/bg4.jpg") no-repeat center center;
+    background-size:cover;
+}
+
+section > *{
+    position:relative;
+    z-index:1;
+}
+.photobooth-full{
+    position:absolute;
+    top:48%;
+    left:50%;
+    transform:translate(-50%,-50%);
+    width:100%;       /* ubah sesuai ukuran yang diinginkan */
+    height:auto;     /* biar proporsional */
+    max-width:1000px; /* batasi maksimal agar tidak ngezoom di layar besar */
+    max-height:100%;  /* batasi tinggi layar */
+    z-index:1;
+}
+.love-overlay{
+    position:absolute;
+    top:0;
+    left:0;
+    width:100%;
+    height:90%;
+    pointer-events:none;
+    overflow:hidden;
+    z-index:3; /* di atas gambar utama */
+}
+
+.love-overlay .heart{
+    position:absolute;
+    width:15px;
+    height:15px;
+    background:red;
+    transform:rotate(-45deg);
+    animation:fallDown linear infinite;
+}
+
+.love-overlay .heart::before,
+.love-overlay .heart::after{
+    content:'';
+    position:absolute;
+    width:15px;
+    height:15px;
+    background:red;
+    border-radius:50%;
+}
+#screen-full-card .love-overlay{
+    opacity: 0.3; /* overlay lebih tipis */
+}
+
+#screen-photobooth .love-overlay{
+    opacity: 0.8; /* overlay lebih padat */
+}
+.love-overlay .heart::before{
+    top:-7.5px;
+    left:0;
+}
+
+.love-overlay .heart::after{
+    left:7.5px;
+    top:0;
+}
+
+@keyframes fallDown{
+    0%{
+        transform: translateY(var(--startY)) rotate(-45deg);
+        opacity:1;
+    }
+    100%{
+        transform: translateY(100vh) rotate(-45deg);
+        opacity:0;
+    }
+}
+
+/* Animasi jatuh dari atas */
+@keyframes fallDown{
+    0%{
+        transform: translateY(-30px) rotate(-45deg);
+        opacity:1;
+    }
+    100%{
+        transform: translateY(100vh) rotate(-45deg);
+        opacity:0;
+    }
+}
+
+/* POSISI KHUSUS MAILBOX */
+#screen-mailbox .center{
+    top:auto;
+    bottom:80px;
+    left:52%;
+    transform:translateX(-50%);
+}
+/* POSISI LETTER */
+#screen-flower-letter .center{
+    top:50%;   
+    left:58%;
+    transform:translate(-50%,-50%);
+}
+.full-letter{
+    width:400px;
+    height:auto;
+    cursor:pointer;
+    animation:zoom 1s ease;
+    position:relative;
+    left:0px;  /* geser ke kanan 50px */
+}
+/* ANIMASI MAILBOX MAJU */
+.mailbox.push-forward{
+    animation:pushForward 0.6s ease forwards;
+}
+
+@keyframes pushForward{
+    0%{
+        transform:translateY(0) scale(1);
+    }
+    50%{
+        transform:translateY(-10px) scale(1.05);
+    }
+    100%{
+        transform:translateY(-20px) scale(1.1);
+        opacity:0.9;
+    }
+}
+
+/* ANIMASI MIRING KE KANAN */
+.small-letter.tilt-out{
+    animation:tiltRight 0.6s ease forwards;
+}
+
+@keyframes tiltRight{
+    0%{
+        transform:scale(1) rotate(0deg);
+        opacity:1;
+    }
+    100%{
+        transform:scale(0.8) rotate(25deg) translateX(80px);
+        opacity:0;
+    }
+}
+/* KHUSUS iPHONE */
+@supports (-webkit-touch-callout: none) {
+
+    body{
+        padding-top: env(safe-area-inset-top);
+        padding-bottom: env(safe-area-inset-bottom);
+    }
+
+    .mailbox{
+        width:50vw;
+        max-width:200px;
+    }
+
+    .small-letter{
+        width:45vw;
+        max-width:180px;
+    }
+
+    .full-letter{
+        width:90vw;
+        max-width:360px;
+    }
+
+    .face{
+        width:18vw;
+        max-width:70px;
+    }
+
+    .photo{
+        width:22vw;
+        max-width:100px;
+    }
+}
+
+#love-overlay{
+    position:fixed;
+    top:0;
+    left:0;
+    width:100%;
+    height:100%;
+    pointer-events:none;
+    z-index:999;
+    overflow:hidden;
+}
+
+.heart{
+    position:absolute;
+    width:15px;
+    height:15px;
+    background:red;
+    transform:rotate(-45deg);
+    animation:floatUp linear infinite;
+}
+
+.heart::before,
+.heart::after{
+    content:'';
+    position:absolute;
+    width:15px;
+    height:15px;
+    background:red;
+    border-radius:50%;
+}
+
+.heart::before{
+    top:-7.5px;
+    left:0;
+}
+
+.heart::after{
+    left:7.5px;
+    top:0;
+}
+
+@keyframes floatUp{
+    0%{
+        transform: translateY(100vh) rotate(-45deg);
+        opacity:1;
+    }
+    100%{
+        transform: translateY(-10vh) rotate(-45deg);
+        opacity:0;
+    }
+}
